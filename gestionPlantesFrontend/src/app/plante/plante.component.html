@@ -1,0 +1,72 @@
+<div class="container mt-2">
+
+  <ng-container *ngIf="plant | async as listPlants; else failureOrLoading">
+
+    <div class="p-3">
+      <div class="card">
+        <div class="card-header"><h1 class="text-success"><strong>PLANTS</strong></h1></div>
+        <div class="card-body">
+
+          <div *ngIf="searchFormGroup">
+            <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchPlant()">
+              <div class="input-group">
+                <label class="input-group-text">keyword :</label>
+                <input type="text" formControlName="keyword" class="form-control">
+                <button class="btn btn-outline-success">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <table class="table">
+            <thead>
+            <tr>
+              <th>ID</th>  <th>NAME</th> <th>SPECIES</th> <th>PURCHASE DATE</th> <th>IS WATERING</th>
+              <th>Quantity Water</th> <th>Watering Frequency</th> <th>IMAGE</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of plant | async">
+              <td>{{p.id}}</td>
+              <td>{{p.name}}</td>
+              <td>{{p.species}}</td>
+              <td>{{p.purchaseDate}}</td>
+              <td>{{p.isWatering}}</td>
+              <td>{{p.quantityWater}}</td>
+              <td>{{p.wateringFrequency}}</td>
+              <td>{{p.image}}
+              </td>
+
+              <td>
+                <button (click)="setDeletePlant(p)" class="btn btn-danger">Delete
+                  <i class="bi bi-trash"></i>
+                </button>
+
+              </td>
+
+            </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #failureOrLoading class="text-danger">
+    <ng-container *ngIf="errorMessage; else loading">
+      <div class="text-danger">
+        {{errorMessage}}
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      Loading ......
+    </ng-template>
+    <div class="text-danger">
+      {{errorMessage}}
+    </div>
+  </ng-template>
+</div>
+

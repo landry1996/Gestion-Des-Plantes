@@ -1,0 +1,27 @@
+<div class="container mt-2">
+<div class="p-3">
+  <div class="card">
+    <div class="card-header"><h1 class="text-success"><strong>History</strong></h1></div>
+   <div class="card-body">
+     <table class="table">
+       <thead>
+
+       </thead>
+       <tr>
+         <th>ID</th> <th>Name</th> <th>Species</th> <th>Is Watering</th>
+       </tr>
+     </table>
+     <tbody>
+     <tr *ngFor="let p of plant | async">
+       <td>{{p.id}}</td>
+       <td>{{p.name}}</td>
+       <td>{{p.species}}</td>
+       <td>{{p.isWatering}}</td>
+     </tr>
+     </tbody>
+   </div>
+
+  </div>
+</div>
+
+  </div>
